@@ -25,7 +25,7 @@ namespace game
 
 	static bool DoesWorldExistInStore(const data::sqlite::Store& store)
 	{
-		return !data::sqlite::Stores::Execute(store, "SELECT name FROM sqlite_master WHERE type='table' AND name='Worlds';").empty();
+		return false; //!data::sqlite::Stores::Execute(store, "SELECT name FROM sqlite_master WHERE type='table' AND name='Worlds';").empty();
 	}
 
 	bool DoesAutosaveExist()

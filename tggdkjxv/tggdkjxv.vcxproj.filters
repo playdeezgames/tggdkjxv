@@ -166,6 +166,9 @@
     <ClCompile Include="Visuals.SpriteGrid.cpp">
       <Filter>Source\Visuals</Filter>
     </ClCompile>
+    <ClCompile Include="State.InPlay.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">

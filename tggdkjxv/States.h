@@ -12,3 +12,4 @@ namespace state::ConfirmAbandon { void Start(); }
 namespace state::ConfirmOverwrite { void Start(); }
 namespace state::Tip { void Start(); }
 namespace state::Statistics { void Start(); }
+namespace state::InPlay { void Start(); }

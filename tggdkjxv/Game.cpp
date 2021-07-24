@@ -3,6 +3,7 @@
 #include "Data.SQLite.Stores.h"
 #include "Game.Paddle.h"
 #include "Game.Thingies.h"
+#include "Game.Score.h"
 namespace game
 {
 	void Reset(const Difficulty& difficulty)
@@ -10,6 +11,7 @@ namespace game
 		data::sqlite::Stores::Bounce(data::sqlite::Store::IN_MEMORY);
 		game::Paddle::Reset(difficulty);
 		game::Thingies::Reset(difficulty);
+		game::Score::Reset();
 	}
 
 	void Start()

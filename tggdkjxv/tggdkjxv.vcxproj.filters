@@ -169,6 +169,9 @@
     <ClCompile Include="State.InPlay.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Paddle.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -323,6 +326,12 @@
     </ClInclude>
     <ClInclude Include="Visuals.SpriteGrid.h">
       <Filter>Headers\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Paddle.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.PaddleSize.h">
+      <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

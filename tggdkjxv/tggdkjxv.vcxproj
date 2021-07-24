@@ -176,6 +176,7 @@
     <ClCompile Include="Game.Audio.Mux.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
+    <ClCompile Include="Game.Paddle.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
@@ -239,6 +240,8 @@
     <ClInclude Include="Game.Difficulty.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game.Heading.h" />
+    <ClInclude Include="Game.Paddle.h" />
+    <ClInclude Include="Game.PaddleSize.h" />
     <ClInclude Include="Maze.Door.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Sublayouts.h" />

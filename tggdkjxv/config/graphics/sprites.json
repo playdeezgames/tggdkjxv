@@ -3099,5 +3099,12 @@
         "y": 0,
         "width": 16,
         "height": 16
+    },
+    "Paddle64": {
+        "texture": "paddle",
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 16
     }  
 }

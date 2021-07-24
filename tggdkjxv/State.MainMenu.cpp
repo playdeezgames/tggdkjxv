@@ -10,6 +10,7 @@
 #include "Game.Audio.Mux.h"
 #include "Visuals.Texts.h"
 #include "Data.Stores.h"
+#include "Game.h"
 namespace state::MainMenu
 {
 	const std::string LAYOUT_NAME = "State.MainMenu";
@@ -26,16 +27,17 @@ namespace state::MainMenu
 		QUIT
 	};
 
-	static void GoToAbout()
+	static void StartGame()
 	{
-		::application::UIState::Write(::UIState::ABOUT);
+		game::Reset(game::Difficulty::NORMAL);
+		::application::UIState::Write(::UIState::IN_PLAY);
 	}
 
 	const std::map<MainMenuItem, std::function<void()>> activators =
 	{
 		{ MainMenuItem::START, ::application::UIState::GoTo(::UIState::IN_PLAY) },
 		{ MainMenuItem::OPTIONS, ::application::UIState::PushTo(::UIState::OPTIONS)  },
-		{ MainMenuItem::ABOUT, GoToAbout },
+		{ MainMenuItem::ABOUT, ::application::UIState::GoTo(::UIState::ABOUT) },
 		{ MainMenuItem::QUIT, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT)  },
 	};
 

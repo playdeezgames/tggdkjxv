@@ -20,8 +20,8 @@ namespace game::Thingies
 	const double MINIMUM_PADDLE_HIT_Y = MINIMUM_PADDLE_Y - ICON_HEIGHT / 2.0;
 	const double MAXIMUM_PADDLE_Y = MAXIMUM_Y;
 	const double MAXIMUM_PADDLE_HIT_Y = MAXIMUM_PADDLE_Y + ICON_HEIGHT / 2.0;
-	const double SPAWN_Y = MINIMUM_Y - ICON_HEIGHT/2.0;
-	const double MISS_Y = MAXIMUM_Y + ICON_HEIGHT/2.0;
+	const double SPAWN_Y = MINIMUM_Y - ICON_HEIGHT / 2.0;
+	const double MISS_Y = MAXIMUM_Y + ICON_HEIGHT / 2.0;
 	const double Y_VELOCITY_INITIAL = 32.0;
 	const double Y_VELOCITY_INCREMENT = 0.5;
 	static double y_velocity;
@@ -50,11 +50,11 @@ namespace game::Thingies
 
 	static void SpawnThingie()
 	{
-		game::Thingie thingie = 
+		game::Thingie thingie =
 		{
 			game::ThingieType::CHOCOLATE,
 			{common::RNG::FromRange(0.0, (double)game::Paddle::FIELD_WIDTH),SPAWN_Y},
-			{common::RNG::FromRange(X_VELOCITY_MINIMUM, X_VELOCITY_MAXIMUM), y_velocity}
+			{common::RNG::FromRange(X_VELOCITY_MINIMUM, X_VELOCITY_MAXIMUM), y_velocity * common::RNG::FromRange(1, 3)}
 		};
 		y_velocity += Y_VELOCITY_INCREMENT;
 		thingies.push_back(thingie);
@@ -82,7 +82,7 @@ namespace game::Thingies
 
 	static void IncrementScore()
 	{
-		game::Score::Write(game::Score::Read()+1);
+		game::Score::Write(game::Score::Read() + 1);
 	}
 
 	static void CollectThingie(const game::Thingie& thingie)
@@ -107,13 +107,18 @@ namespace game::Thingies
 		}
 	}
 
+	static bool IsMiss(const game::Thingie& thingie)
+	{
+		return (thingie.position.GetY() > MISS_Y);
+	}
+
 	static bool NeedsCulling(const game::Thingie& thingie)
 	{
 		return (
 			IsHittingPaddle(thingie) ||
-			(thingie.position.GetY() > MISS_Y) ||
-			(thingie.position.GetX() < MINIMUM_X) ||
-			(thingie.position.GetX() >= MAXIMUM_X));
+			IsMiss(thingie) ||
+			(thingie.position.GetX() < MINIMUM_X - ICON_WIDTH / 2.0) ||
+			(thingie.position.GetX() >= MAXIMUM_X + ICON_WIDTH / 2.0));
 	}
 
 	static void CullThingies()
@@ -121,10 +126,19 @@ namespace game::Thingies
 		thingies.remove_if(NeedsCulling);
 	}
 
+	static void ProcessMisses()
+	{
+		if (std::find_if(thingies.begin(), thingies.end(), IsMiss) != thingies.end())
+		{
+			game::Paddle::DecreasePaddleSize();
+		}
+	}
+
 	void Update(double delta)
 	{
 		UpdateTimer(delta);
 		UpdateThingies(delta);
+		ProcessMisses();
 		CullThingies();
 	}
 }

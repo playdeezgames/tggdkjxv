@@ -19,20 +19,24 @@ namespace game::Paddle
 		{game::PaddleSize::SMALLEST, "Paddle16" }
 	};
 
-	static PaddleSize paddleSize;
+	static std::optional<game::PaddleSize> paddleSize;
 	static int paddlePosition;
 
 	int ReadPaddleWidth()
 	{
-		return paddleWidths.find(paddleSize)->second;
+		if (paddleSize.has_value())
+		{
+			return paddleWidths.find(paddleSize.value())->second;
+		}
+		return 0;
 	}
 
-	void WritePaddleSize(const game::PaddleSize& size)
+	void WritePaddleSize(const std::optional<game::PaddleSize>& size)
 	{
 		paddleSize = size;
 	}
 
-	game::PaddleSize ReadPaddleSize()
+	std::optional<game::PaddleSize> ReadPaddleSize()
 	{
 		return paddleSize;
 	}
@@ -58,10 +62,36 @@ namespace game::Paddle
 		WritePaddlePosition(position - minimum);
 	}
 
-	std::string ReadSpriteName()
+	std::optional<std::string> ReadSpriteName()
 	{
-		return paddleSprites.find(ReadPaddleSize())->second;
+		if (paddleSize.has_value())
+		{
+			return paddleSprites.find(paddleSize.value())->second;
+		}
+		return std::nullopt;
 	}
+
+	void DecreasePaddleSize()
+	{
+		std::optional<game::PaddleSize> size = std::nullopt;
+		if (paddleSize)
+		{
+			switch (paddleSize.value())
+			{
+			case PaddleSize::NORMAL:
+				size = PaddleSize::SMALL;
+				break;
+			case PaddleSize::SMALL:
+				size = PaddleSize::SMALLER;
+				break;
+			case PaddleSize::SMALLER:
+				size = PaddleSize::SMALLEST;
+				break;
+			}
+		}
+		WritePaddleSize(size);
+	}
+
 
 	void Reset(const game::Difficulty&)
 	{

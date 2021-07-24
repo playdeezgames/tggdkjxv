@@ -2,14 +2,16 @@
 #include "Game.Difficulty.h"
 #include "Game.PaddleSize.h"
 #include <string>
+#include <optional>
 namespace game::Paddle
 {
 	void Reset(const game::Difficulty&);
 
-	std::string ReadSpriteName();
+	std::optional<std::string> ReadSpriteName();
 
-	void WritePaddleSize(const game::PaddleSize&);
-	game::PaddleSize ReadPaddleSize();
+	void WritePaddleSize(const std::optional<game::PaddleSize>&);
+	std::optional<game::PaddleSize> ReadPaddleSize();
+	void DecreasePaddleSize();
 
 	void WritePaddlePosition(int);
 	void CenterPaddlePosition(int);

@@ -38,8 +38,13 @@ namespace state::InPlay
 
 	static void UpdatePaddle()
 	{
-		visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_PADDLE, { game::Paddle::ReadPaddlePosition(), PADDLE_Y });
-		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_PADDLE, game::Paddle::ReadSpriteName());
+		auto spriteName = game::Paddle::ReadSpriteName();
+		visuals::Images::SetVisible(LAYOUT_NAME, IMAGE_PADDLE, spriteName.has_value());
+		if (spriteName)
+		{
+			visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_PADDLE, { game::Paddle::ReadPaddlePosition(), PADDLE_Y });
+			visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_PADDLE, spriteName.value());
+		}
 	}
 
 	static void HideAllIcons()
@@ -59,6 +64,7 @@ namespace state::InPlay
 			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
 			common::XY<int> plot = { (int)thingie.position.GetX(), (int)thingie.position.GetY()};
 			visuals::Images::SetLocation(LAYOUT_NAME, imageId, plot);
+
 			index++;
 			if (index >= ICON_COUNT)
 			{

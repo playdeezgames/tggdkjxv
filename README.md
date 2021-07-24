@@ -6,9 +6,9 @@ Themes:
 
 TheGrumpyGameDevXV
 
-* A game where you investigate underwater cities with monsters
-* An game where you comment on the human body with geometry.
-* An game where you collect chocolate to win points.
+* ~A game where you investigate underwater cities with monsters.~
+* ~A game where you comment on the human body with geometry.~
+* A game where you collect chocolate to win points.
 
 "Safety Theme":
 

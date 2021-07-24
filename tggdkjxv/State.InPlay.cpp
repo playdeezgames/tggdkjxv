@@ -17,7 +17,7 @@ namespace state::InPlay
 
 	static void HandlePaddle(const common::XY<int>& location)
 	{
-		game::Paddle::WritePaddlePosition(location.GetX());
+		game::Paddle::CenterPaddlePosition(location.GetX());
 	}
 
 	const std::map<std::string, std::function<void(const common::XY<int>&)>> areaHandlers =
@@ -33,6 +33,7 @@ namespace state::InPlay
 	static void OnUpdate(const unsigned int& ticks)
 	{
 		visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_PADDLE, { game::Paddle::ReadPaddlePosition(), PADDLE_Y });
+		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_PADDLE, game::Paddle::ReadSpriteName());
 	}
 
 	void Start()

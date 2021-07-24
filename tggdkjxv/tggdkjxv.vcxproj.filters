@@ -175,6 +175,9 @@
     <ClCompile Include="Game.Thingies.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Score.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -343,6 +346,9 @@
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.Thingie.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Score.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>

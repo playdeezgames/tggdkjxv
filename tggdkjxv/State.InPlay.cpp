@@ -10,11 +10,14 @@
 #include "Visuals.Images.h"
 #include "Game.Thingies.h"
 #include <format>
+#include "Visuals.Texts.h"
+#include "Game.Score.h"
 namespace state::InPlay
 {
 	const std::string LAYOUT_NAME = "State.InPlay";
 	const std::string AREA_PADDLE = "Paddle";
 	const std::string IMAGE_PADDLE = "Paddle";
+	const std::string TEXT_SCORE = "Score";
 	const int ICON_COUNT = 20;
 	const int PADDLE_Y = 344;
 
@@ -69,12 +72,14 @@ namespace state::InPlay
 		HideAllIcons();
 		game::Thingies::Update((double)ticks / 1000.0);
 		RefreshIcons();
+		
 	}
 
 	static void OnUpdate(const unsigned int& ticks)
 	{
 		UpdatePaddle();
 		UpdateThingies(ticks);
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SCORE, std::format("{}", game::Score::Read()));
 	}
 
 	void Start()

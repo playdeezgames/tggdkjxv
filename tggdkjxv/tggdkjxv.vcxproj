@@ -177,6 +177,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game.Heading.cpp" />
     <ClCompile Include="Game.Paddle.cpp" />
+    <ClCompile Include="Game.Score.cpp" />
     <ClCompile Include="Game.Thingies.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Game.Heading.h" />
     <ClInclude Include="Game.Paddle.h" />
     <ClInclude Include="Game.PaddleSize.h" />
+    <ClInclude Include="Game.Score.h" />
     <ClInclude Include="Game.Thingie.h" />
     <ClInclude Include="Game.ThingieType.h" />
     <ClInclude Include="Game.Thingies.h" />

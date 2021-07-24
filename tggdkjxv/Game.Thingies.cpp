@@ -1,6 +1,7 @@
 #include "Game.Thingies.h"
 #include "Game.Paddle.h"
 #include "Common.RNG.h"
+#include "Game.Score.h"
 namespace game::Thingies
 {
 	const double X_VELOCITY_MINIMUM = -8.0;
@@ -68,24 +69,42 @@ namespace game::Thingies
 			SpawnThingie();
 		}
 	}
+	static bool IsHittingPaddle(const game::Thingie& thingie)
+	{
+		if (thingie.position.GetY() >= MINIMUM_PADDLE_HIT_Y && thingie.position.GetY() <= MAXIMUM_PADDLE_HIT_Y)
+		{
+			double minimumPaddleHitX = (double)game::Paddle::ReadPaddlePosition() - ICON_WIDTH / 2.0;
+			double maximumPaddleHitX = (double)game::Paddle::ReadPaddlePosition() + (double)game::Paddle::ReadPaddleWidth() + ICON_WIDTH / 2.0;
+			return thingie.position.GetX() >= minimumPaddleHitX && thingie.position.GetX() <= maximumPaddleHitX;
+		}
+		return false;
+	}
+
+	static void IncrementScore()
+	{
+		game::Score::Write(game::Score::Read()+1);
+	}
+
+	static void CollectThingie(const game::Thingie& thingie)
+	{
+		switch (thingie.thingieType)
+		{
+		case game::ThingieType::CHOCOLATE:
+			IncrementScore();
+			break;
+		}
+	}
 
 	static void UpdateThingies(double delta)
 	{
 		for (auto& thingie : thingies)
 		{
 			thingie.position = thingie.position + thingie.velocity * delta;
+			if (IsHittingPaddle(thingie))
+			{
+				CollectThingie(thingie);
+			}
 		}
-	}
-
-	static bool IsHittingPaddle(const game::Thingie& thingie)
-	{
-		if (thingie.position.GetY() >= MINIMUM_PADDLE_HIT_Y && thingie.position.GetY() <= MAXIMUM_PADDLE_HIT_Y)
-		{
-			double minimumPaddleHitX = (double)game::Paddle::ReadPaddlePosition() - ICON_WIDTH/2.0;
-			double maximumPaddleHitX = (double)game::Paddle::ReadPaddlePosition() + (double)game::Paddle::ReadPaddleWidth() + ICON_WIDTH / 2.0;
-			return thingie.position.GetX() >= minimumPaddleHitX && thingie.position.GetX() <= maximumPaddleHitX;
-		}
-		return false;
 	}
 
 	static bool NeedsCulling(const game::Thingie& thingie)

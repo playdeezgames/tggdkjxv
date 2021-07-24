@@ -35,7 +35,7 @@ namespace state::MainMenu
 
 	const std::map<MainMenuItem, std::function<void()>> activators =
 	{
-		{ MainMenuItem::START, ::application::UIState::GoTo(::UIState::IN_PLAY) },
+		{ MainMenuItem::START, StartGame },
 		{ MainMenuItem::OPTIONS, ::application::UIState::PushTo(::UIState::OPTIONS)  },
 		{ MainMenuItem::ABOUT, ::application::UIState::GoTo(::UIState::ABOUT) },
 		{ MainMenuItem::QUIT, ::application::UIState::GoTo(::UIState::CONFIRM_QUIT)  },

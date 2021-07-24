@@ -4,7 +4,6 @@ namespace game::Paddle
 {
 	const game::PaddleSize PADDLE_SIZE_INITIAL = game::PaddleSize::NORMAL;
 	const int POSITION_INITIAL = 0;
-	const int FIELD_WIDTH = 640;
 	const std::map<game::PaddleSize, int> paddleWidths =
 	{
 		{game::PaddleSize::NORMAL, 64 },
@@ -23,7 +22,7 @@ namespace game::Paddle
 	static PaddleSize paddleSize;
 	static int paddlePosition;
 
-	static int ReadPaddleWidth()
+	int ReadPaddleWidth()
 	{
 		return paddleWidths.find(paddleSize)->second;
 	}

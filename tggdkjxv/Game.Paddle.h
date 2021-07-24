@@ -14,4 +14,8 @@ namespace game::Paddle
 	void WritePaddlePosition(int);
 	void CenterPaddlePosition(int);
 	int ReadPaddlePosition();
+	int ReadPaddleWidth();
+
+	const int FIELD_WIDTH = 640;
+
 }

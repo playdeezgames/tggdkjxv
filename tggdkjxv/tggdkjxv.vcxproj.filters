@@ -172,6 +172,9 @@
     <ClCompile Include="Game.Paddle.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game.Thingies.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp">
@@ -331,6 +334,15 @@
       <Filter>Headers\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.PaddleSize.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Thingies.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.ThingieType.h">
+      <Filter>Headers\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.Thingie.h">
       <Filter>Headers\Game</Filter>
     </ClInclude>
   </ItemGroup>

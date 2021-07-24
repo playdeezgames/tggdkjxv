@@ -8,11 +8,14 @@
 #include "Application.Update.h"
 #include "Game.Paddle.h"
 #include "Visuals.Images.h"
+#include "Game.Thingies.h"
+#include <format>
 namespace state::InPlay
 {
 	const std::string LAYOUT_NAME = "State.InPlay";
 	const std::string AREA_PADDLE = "Paddle";
 	const std::string IMAGE_PADDLE = "Paddle";
+	const int ICON_COUNT = 20;
 	const int PADDLE_Y = 344;
 
 	static void HandlePaddle(const common::XY<int>& location)
@@ -30,10 +33,48 @@ namespace state::InPlay
 		areaHandlers.find(areaName)->second(location);
 	}
 
-	static void OnUpdate(const unsigned int& ticks)
+	static void UpdatePaddle()
 	{
 		visuals::Images::SetLocation(LAYOUT_NAME, IMAGE_PADDLE, { game::Paddle::ReadPaddlePosition(), PADDLE_Y });
 		visuals::Images::SetSprite(LAYOUT_NAME, IMAGE_PADDLE, game::Paddle::ReadSpriteName());
+	}
+
+	static void HideAllIcons()
+	{
+		for (int index = 0; index < ICON_COUNT; ++index)
+		{
+			visuals::Images::SetVisible(LAYOUT_NAME, std::format("Icon{}",index), false);
+		}
+	}
+
+	static void RefreshIcons()
+	{
+		int index = 0;
+		for (auto& thingie : game::Thingies::All())
+		{
+			std::string imageId = std::format("Icon{}", index);
+			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
+			common::XY<int> plot = { (int)thingie.position.GetX(), (int)thingie.position.GetY()};
+			visuals::Images::SetLocation(LAYOUT_NAME, imageId, plot);
+			index++;
+			if (index >= ICON_COUNT)
+			{
+				break;
+			}
+		}
+	}
+
+	static void UpdateThingies(const unsigned int& ticks)
+	{
+		HideAllIcons();
+		game::Thingies::Update((double)ticks / 1000.0);
+		RefreshIcons();
+	}
+
+	static void OnUpdate(const unsigned int& ticks)
+	{
+		UpdatePaddle();
+		UpdateThingies(ticks);
 	}
 
 	void Start()

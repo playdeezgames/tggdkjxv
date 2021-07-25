@@ -1,18 +1,18 @@
 [
     {
         "type": "Image",
-        "sprite": "Splash",
-        "color": "White",
+        "sprite": "Background",
+        "color": "DarkGray",
         "x": 0,
         "y": 0
     },
     {
         "type": "Text",
         "font": "default",
-        "color": "Cyan",
-        "text": "That's NOT Chocolate!",
+        "color": "LightGreen",
+        "text": "==GAME OVER==",
         "x": 320,
-        "y": 172,
+        "y": 8,
         "horizontal-alignment": 0,
         "drop-shadow": true,
         "drop-shadow-color": "Black",
@@ -21,15 +21,20 @@
     },
     {
         "type": "Text",
-        "font": "font5x7",
+        "text-id": "FinalScore",
+        "font": "default",
         "color": "Gray",
-        "text": "A Production of TheGrumpyGameDev",
+        "text": "<final score>",
         "x": 320,
-        "y": 340,
+        "y": 32,
         "horizontal-alignment": 0,
         "drop-shadow": true,
         "drop-shadow-color": "Black",
-        "drop-shadow-x": 1,
-        "drop-shadow-y": 1
+        "drop-shadow-x": 2,
+        "drop-shadow-y": 2
+    },
+    {
+        "type": "Layout",
+        "name": "Sublayout.Modded"
     }
 ]

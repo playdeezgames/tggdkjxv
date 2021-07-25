@@ -3099,5 +3099,42 @@
         "y": 0,
         "width": 16,
         "height": 16
+    },
+    "Paddle64": {
+        "texture": "paddle",
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 16
+    },
+    "Paddle48": {
+        "texture": "paddle",
+        "x": 0,
+        "y": 16,
+        "width": 48,
+        "height": 16
+    },
+    "Paddle32": {
+        "texture": "paddle",
+        "x": 0,
+        "y": 32,
+        "width": 32,
+        "height": 16
+    },
+    "Paddle16": {
+        "texture": "paddle",
+        "x": 0,
+        "y": 48,
+        "width": 16,
+        "height": 16
+    },
+    "IconChocolate": {
+        "texture": "icons",
+        "x": 0,
+        "y": 0,
+        "width": 32,
+        "height": 32,
+        "offset-x":-16,
+        "offset-y":-16
     }  
 }

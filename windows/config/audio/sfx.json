@@ -1,3 +1,6 @@
 {
-  "woohoo": "assets/audio/sfx/woohoo.wav"
+  "woohoo": "assets/audio/sfx/woohoo.wav",
+  "game-over": "assets/audio/sfx/gameover.wav",
+  "miss-chocolate": "assets/audio/sfx/misschocolate.wav",
+  "hit-chocolate": "assets/audio/sfx/hitchocolate.wav"
 }

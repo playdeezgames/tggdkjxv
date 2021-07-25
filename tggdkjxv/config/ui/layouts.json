@@ -14,5 +14,6 @@
     "State.Tip":"config/ui/layouts/State.Tip.json",
     "State.Statistics":"config/ui/layouts/State.Statistics.json",
     "Sublayout.UIHamburger":"config/ui/layouts/Sublayout.UIHamburger.json",
-    "State.InPlay":"config/ui/layouts/State.InPlay.json"
+    "State.InPlay":"config/ui/layouts/State.InPlay.json",
+    "State.GameOver":"config/ui/layouts/State.GameOver.json"
 }

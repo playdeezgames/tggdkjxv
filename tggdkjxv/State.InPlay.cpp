@@ -78,14 +78,22 @@ namespace state::InPlay
 		HideAllIcons();
 		game::Thingies::Update((double)ticks / 1000.0);
 		RefreshIcons();
-		
+		if (!game::Paddle::ReadPaddleSize().has_value())
+		{
+			application::UIState::Write(::UIState::GAME_OVER);
+		}
+	}
+
+	static void UpdateScore()
+	{
+		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SCORE, std::format("{}", game::Score::Read()));
 	}
 
 	static void OnUpdate(const unsigned int& ticks)
 	{
 		UpdatePaddle();
 		UpdateThingies(ticks);
-		visuals::Texts::SetText(LAYOUT_NAME, TEXT_SCORE, std::format("{}", game::Score::Read()));
+		UpdateScore();
 	}
 
 	void Start()

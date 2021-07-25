@@ -13,3 +13,4 @@ namespace state::ConfirmOverwrite { void Start(); }
 namespace state::Tip { void Start(); }
 namespace state::Statistics { void Start(); }
 namespace state::InPlay { void Start(); }
+namespace state::GameOver { void Start(); }

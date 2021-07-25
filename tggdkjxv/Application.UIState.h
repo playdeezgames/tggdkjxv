@@ -23,7 +23,8 @@ enum class UIState
 	CONFIRM_OVERWRITE_SLOT5,
 	TIP,
 	STATISTICS,
-	IN_PLAY
+	IN_PLAY,
+	GAME_OVER
 };
 namespace application::UIState
 {

@@ -86,6 +86,7 @@ namespace common::Application
 		state::ConfirmAbandon::Start,
 		state::ConfirmOverwrite::Start,
 		state::InPlay::Start,
+		state::GameOver::Start,
 		sublayout::UIHamburger::Start,
 		Options::Initialize,
 		visuals::Layouts::Start

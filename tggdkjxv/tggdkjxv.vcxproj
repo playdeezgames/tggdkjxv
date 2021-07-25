@@ -182,6 +182,7 @@
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="State.ConfirmAbandon.cpp" />
     <ClCompile Include="State.ConfirmOverwrite.cpp" />
+    <ClCompile Include="State.GameOver.cpp" />
     <ClCompile Include="State.InPlay.cpp" />
     <ClCompile Include="State.Statistics.cpp" />
     <ClCompile Include="State.Tip.cpp" />

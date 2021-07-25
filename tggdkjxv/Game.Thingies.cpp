@@ -25,6 +25,8 @@ namespace game::Thingies
 	const double Y_VELOCITY_INITIAL = 32.0;
 	const double Y_VELOCITY_INCREMENT = 0.5;
 	static double y_velocity;
+	const double Y_VELOCITY_MULTIPLIER_MINIMUM = 1.0;
+	const double Y_VELOCITY_MULTIPLIER_MAXIMUM = 3.0;
 
 	const double TIME_INTERVAL = 1.0;
 	static double timeLeft;
@@ -54,7 +56,7 @@ namespace game::Thingies
 		{
 			game::ThingieType::CHOCOLATE,
 			{common::RNG::FromRange(0.0, (double)game::Paddle::FIELD_WIDTH),SPAWN_Y},
-			{common::RNG::FromRange(X_VELOCITY_MINIMUM, X_VELOCITY_MAXIMUM), y_velocity * common::RNG::FromRange(1, 3)}
+			{common::RNG::FromRange(X_VELOCITY_MINIMUM, X_VELOCITY_MAXIMUM), y_velocity * common::RNG::FromRange(Y_VELOCITY_MULTIPLIER_MINIMUM, Y_VELOCITY_MULTIPLIER_MAXIMUM)}
 		};
 		y_velocity += Y_VELOCITY_INCREMENT;
 		thingies.push_back(thingie);

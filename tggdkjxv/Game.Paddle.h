@@ -12,6 +12,7 @@ namespace game::Paddle
 	void WritePaddleSize(const std::optional<game::PaddleSize>&);
 	std::optional<game::PaddleSize> ReadPaddleSize();
 	void DecreasePaddleSize();
+	void IncreasePaddleSize();
 
 	void WritePaddlePosition(int);
 	void CenterPaddlePosition(int);

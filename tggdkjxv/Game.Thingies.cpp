@@ -2,8 +2,12 @@
 #include "Game.Paddle.h"
 #include "Common.RNG.h"
 #include "Game.Score.h"
+#include "Common.Audio.h"
 namespace game::Thingies
 {
+	const std::string SFX_HIT_CHOCOLATE = "hit-chocolate";
+	const std::string SFX_MISS_CHOCOLATE = "miss-chocolate";
+
 	const double X_VELOCITY_MINIMUM = -8.0;
 	const double X_VELOCITY_MAXIMUM = 8.0;
 	const double MINIMUM_X = 0.0;
@@ -92,6 +96,7 @@ namespace game::Thingies
 		switch (thingie.thingieType)
 		{
 		case game::ThingieType::CHOCOLATE:
+			common::audio::Sfx::Play(SFX_HIT_CHOCOLATE);
 			IncrementScore();
 			break;
 		}
@@ -130,8 +135,22 @@ namespace game::Thingies
 
 	static void ProcessMisses()
 	{
-		if (std::find_if(thingies.begin(), thingies.end(), IsMiss) != thingies.end())
+		bool shrinkPaddle = false;
+		for (auto& thingie : thingies)
 		{
+			if (IsMiss(thingie))
+			{
+				switch (thingie.thingieType)
+				{
+				case game::ThingieType::CHOCOLATE:
+					shrinkPaddle = true;
+					break;
+				}
+			}
+		}
+		if (shrinkPaddle)
+		{
+			common::audio::Sfx::Play(SFX_MISS_CHOCOLATE);
 			game::Paddle::DecreasePaddleSize();
 		}
 	}

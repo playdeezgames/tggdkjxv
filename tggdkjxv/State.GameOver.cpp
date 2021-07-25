@@ -6,8 +6,10 @@
 #include "Visuals.Texts.h"
 #include "Game.Score.h"
 #include <format>
+#include "Common.Audio.h"
 namespace state::GameOver
 {
+	const std::string SFX_GAME_OVER = "game-over";
 	const std::string LAYOUT_NAME = "State.GameOver";
 	const std::string TEXT_FINAL_SCORE = "FinalScore";
 
@@ -19,6 +21,7 @@ namespace state::GameOver
 
 	void OnEnter()
 	{
+		common::audio::Sfx::Play(SFX_GAME_OVER);
 		game::audio::Mux::Play(game::audio::Mux::Theme::GAME_OVER);
 		visuals::Texts::SetText(LAYOUT_NAME, TEXT_FINAL_SCORE, std::format("Final Score: {}", game::Score::Read()));
 	}

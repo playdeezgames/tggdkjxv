@@ -78,10 +78,6 @@ namespace state::InPlay
 		HideAllIcons();
 		game::Thingies::Update((double)ticks / 1000.0);
 		RefreshIcons();
-		if (!game::Paddle::ReadPaddleSize().has_value())
-		{
-			application::UIState::Write(::UIState::GAME_OVER);
-		}
 	}
 
 	static void UpdateScore()
@@ -94,6 +90,10 @@ namespace state::InPlay
 		UpdatePaddle();
 		UpdateThingies(ticks);
 		UpdateScore();
+		if (!game::Paddle::ReadPaddleSize().has_value())
+		{
+			application::UIState::Write(::UIState::GAME_OVER);
+		}
 	}
 
 	void Start()

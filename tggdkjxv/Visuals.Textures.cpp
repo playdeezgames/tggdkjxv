@@ -17,6 +17,11 @@ namespace visuals::Textures
 
 	static bool initialized = false;
 
+	static void HookDestroyTexture(SDL_Texture* texture)
+	{
+		SDL_DestroyTexture(texture);
+	}
+
 	static void Initialize(const std::shared_ptr<common::Application::Renderer>& renderer)
 	{
 		if (!initialized)
@@ -25,7 +30,7 @@ namespace visuals::Textures
 			for (auto& entry : properties.items())
 			{
 				std::string imageFileName = entry.value();
-				Add(entry.key(), std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer.get()->renderer.get(), imageFileName.c_str()), SDL_DestroyTexture));
+				Add(entry.key(), std::shared_ptr<SDL_Texture>(IMG_LoadTexture(renderer.get()->renderer.get(), imageFileName.c_str()), HookDestroyTexture));
 			}
 			initialized = true;
 		}

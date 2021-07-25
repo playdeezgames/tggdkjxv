@@ -93,9 +93,14 @@ namespace common::audio
 
 	namespace Sfx
 	{
+		static void HookFreeChunk(Mix_Chunk* chunk)
+		{
+			Mix_FreeChunk(chunk);
+		}
+
 		static void AddSound(const std::string& name, const std::string& filename)
 		{
-			sounds[name] = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV_RW(SDL_RWFromFile(filename.c_str(), "rb"), 1), Mix_FreeChunk);
+			sounds[name] = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV_RW(SDL_RWFromFile(filename.c_str(), "rb"), 1), HookFreeChunk);
 		}
 
 		static bool initialized = false;

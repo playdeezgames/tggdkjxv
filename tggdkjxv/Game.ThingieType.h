@@ -3,6 +3,7 @@ namespace game
 {
 	enum class ThingieType
 	{
-		CHOCOLATE
+		CHOCOLATE,
+		TURD
 	};
 }

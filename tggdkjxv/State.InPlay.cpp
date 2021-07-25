@@ -64,6 +64,8 @@ namespace state::InPlay
 			visuals::Images::SetVisible(LAYOUT_NAME, imageId, true);
 			common::XY<int> plot = { (int)thingie.position.GetX(), (int)thingie.position.GetY()};
 			visuals::Images::SetLocation(LAYOUT_NAME, imageId, plot);
+			std::string spriteName = game::Thingies::GetSpriteName(thingie.thingieType);
+			visuals::Images::SetSprite(LAYOUT_NAME, imageId, spriteName);
 
 			index++;
 			if (index >= ICON_COUNT)

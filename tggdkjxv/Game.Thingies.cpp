@@ -54,11 +54,17 @@ namespace game::Thingies
 		ResetTimer();
 	}
 
+	const std::map<game::ThingieType, size_t> thingieGenerator =
+	{
+		{game::ThingieType::CHOCOLATE, 10},
+		{game::ThingieType::TURD, 10},
+	};
+
 	static void SpawnThingie()
 	{
 		game::Thingie thingie =
 		{
-			game::ThingieType::CHOCOLATE,
+			common::RNG::FromGenerator(thingieGenerator,game::ThingieType::CHOCOLATE),
 			{common::RNG::FromRange(0.0, (double)game::Paddle::FIELD_WIDTH),SPAWN_Y},
 			{common::RNG::FromRange(X_VELOCITY_MINIMUM, X_VELOCITY_MAXIMUM), y_velocity * common::RNG::FromRange(Y_VELOCITY_MULTIPLIER_MINIMUM, Y_VELOCITY_MULTIPLIER_MAXIMUM)}
 		};
@@ -161,5 +167,16 @@ namespace game::Thingies
 		UpdateThingies(delta);
 		ProcessMisses();
 		CullThingies();
+	}
+
+	const std::map< game::ThingieType, std::string> thingieTypeSpriteNames =
+	{
+		{game::ThingieType::CHOCOLATE, "IconChocolate"},
+		{game::ThingieType::TURD, "IconTurd"}
+	};
+
+	std::string GetSpriteName(const game::ThingieType& thingieType)
+	{
+		return thingieTypeSpriteNames.find(thingieType)->second;
 	}
 }

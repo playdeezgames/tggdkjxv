@@ -6,6 +6,7 @@
 namespace game::Thingies
 {
 	const std::string SFX_HIT_CHOCOLATE = "hit-chocolate";
+	const std::string SFX_HIT_TURD = "hit-turd";
 	const std::string SFX_MISS_CHOCOLATE = "miss-chocolate";
 
 	const double X_VELOCITY_MINIMUM = -8.0;
@@ -56,8 +57,9 @@ namespace game::Thingies
 
 	const std::map<game::ThingieType, size_t> thingieGenerator =
 	{
-		{game::ThingieType::CHOCOLATE, 10},
+		{game::ThingieType::CHOCOLATE, 50},
 		{game::ThingieType::TURD, 10},
+		{game::ThingieType::EXPAND, 1}
 	};
 
 	static void SpawnThingie()
@@ -97,6 +99,11 @@ namespace game::Thingies
 		game::Score::Write(game::Score::Read() + 1);
 	}
 
+	static void ClearScore()
+	{
+		game::Score::Write(0);
+	}
+
 	static void CollectThingie(const game::Thingie& thingie)
 	{
 		switch (thingie.thingieType)
@@ -104,6 +111,13 @@ namespace game::Thingies
 		case game::ThingieType::CHOCOLATE:
 			common::audio::Sfx::Play(SFX_HIT_CHOCOLATE);
 			IncrementScore();
+			break;
+		case game::ThingieType::TURD:
+			common::audio::Sfx::Play(SFX_HIT_TURD);
+			ClearScore();
+			break;
+		case game::ThingieType::EXPAND:
+			game::Paddle::IncreasePaddleSize();
 			break;
 		}
 	}
@@ -172,7 +186,8 @@ namespace game::Thingies
 	const std::map< game::ThingieType, std::string> thingieTypeSpriteNames =
 	{
 		{game::ThingieType::CHOCOLATE, "IconChocolate"},
-		{game::ThingieType::TURD, "IconTurd"}
+		{game::ThingieType::TURD, "IconTurd"},
+		{game::ThingieType::EXPAND, "IconExpand"}
 	};
 
 	std::string GetSpriteName(const game::ThingieType& thingieType)

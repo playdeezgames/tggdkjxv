@@ -3,5 +3,6 @@
   "game-over": "assets/audio/sfx/gameover.wav",
   "miss-chocolate": "assets/audio/sfx/misschocolate.wav",
   "hit-chocolate": "assets/audio/sfx/hitchocolate.wav",
-  "hit-turd": "assets/audio/sfx/hitturd.wav"
+  "hit-turd": "assets/audio/sfx/hitturd.wav",
+  "hit-expand": "assets/audio/sfx/hitexpand.wav"
 }

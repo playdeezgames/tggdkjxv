@@ -7,6 +7,7 @@ namespace game::Thingies
 {
 	const std::string SFX_HIT_CHOCOLATE = "hit-chocolate";
 	const std::string SFX_HIT_TURD = "hit-turd";
+	const std::string SFX_HIT_EXPAND = "hit-expand";
 	const std::string SFX_MISS_CHOCOLATE = "miss-chocolate";
 
 	const double X_VELOCITY_MINIMUM = -8.0;
@@ -59,7 +60,7 @@ namespace game::Thingies
 	{
 		{game::ThingieType::CHOCOLATE, 50},
 		{game::ThingieType::TURD, 10},
-		{game::ThingieType::EXPAND, 1}
+		{game::ThingieType::EXPAND, 5}
 	};
 
 	static void SpawnThingie()
@@ -117,6 +118,7 @@ namespace game::Thingies
 			ClearScore();
 			break;
 		case game::ThingieType::EXPAND:
+			common::audio::Sfx::Play(SFX_HIT_EXPAND);
 			game::Paddle::IncreasePaddleSize();
 			break;
 		}

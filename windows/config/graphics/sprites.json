@@ -3136,5 +3136,23 @@
         "height": 32,
         "offset-x":-16,
         "offset-y":-16
+    },
+    "IconTurd": {
+        "texture": "icons",
+        "x": 32,
+        "y": 0,
+        "width": 32,
+        "height": 32,
+        "offset-x":-16,
+        "offset-y":-16
+    },
+    "IconExpand": {
+        "texture": "icons",
+        "x": 64,
+        "y": 0,
+        "width": 32,
+        "height": 32,
+        "offset-x":-16,
+        "offset-y":-16
     }  
 }

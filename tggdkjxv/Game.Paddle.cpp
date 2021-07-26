@@ -92,6 +92,27 @@ namespace game::Paddle
 		WritePaddleSize(size);
 	}
 
+	void IncreasePaddleSize()
+	{
+		std::optional<game::PaddleSize> size = std::nullopt;
+		if (paddleSize)
+		{
+			switch (paddleSize.value())
+			{
+			case PaddleSize::SMALLEST:
+				size = PaddleSize::SMALLER;
+				break;
+			case PaddleSize::SMALLER:
+				size = PaddleSize::SMALL;
+				break;
+			case PaddleSize::SMALL:
+			case PaddleSize::NORMAL:
+				size = PaddleSize::NORMAL;
+				break;
+			}
+		}
+		WritePaddleSize(size);
+	}
 
 	void Reset(const game::Difficulty&)
 	{
